@@ -17,7 +17,7 @@ const endpointSecret =
 
 const YOUR_DOMAIN = (process.env.NODE_ENV = 'development'
   ? 'http://localhost:5173'
-  : 'https://hotel-reservation-system-hrdq-git-rayhan-dev-mtauhidul.vercel.app');
+  : 'https://hotel-reservation-client-beta.vercel.app');
 
 app.get('/', (req, res) => {
   res.send('Hotel Reservation System');
