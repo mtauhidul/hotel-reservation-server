@@ -1,6 +1,9 @@
 {
   "name": "hotel-reservation-system-server",
   "version": "0.1.0",
+  "engines": {
+    "node": "19.9.0"
+  },
   "dependencies": {
     "@stripe/stripe-js": "^1.0.0",
     "cors": "^2.8.5",
