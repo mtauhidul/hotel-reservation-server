@@ -95,7 +95,7 @@ app.post('/create-checkout-session', async (req, res) => {
     payment_method_types: ['card'],
     line_items: [transformedItem],
     mode: 'payment',
-    success_url: `${host}/thanks`,
+    success_url: `${host}/thanks${id}}`,
     cancel_url: `${host}/rooms`,
     metadata: {
       roomId: id,
