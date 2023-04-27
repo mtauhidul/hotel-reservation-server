@@ -29,6 +29,8 @@ exports.fulfillOrder = async (session) => {
     guests: bookingDetails.guests,
     type: bookingDetails.typeEN,
     id: session.id,
+    name: session.shipping.name,
+    email: session.customer_details.email,
   };
 
   bookings.push(newBooking);

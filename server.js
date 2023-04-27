@@ -109,12 +109,10 @@ app.post('/create-checkout-session', async (req, res) => {
     },
   });
 
-  console.log('REQUEST BODY', req.body);
-  console.log('______________________');
-  console.log('SESSION', session);
-
   res.status(200).json({
     id: session.id,
+    name: session.name,
+    email: session.email,
   });
 });
 
