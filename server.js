@@ -12,8 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.static(path.resolve(__dirname, '../client', 'wwwroot', 'app')));
 
-const endpointSecret =
-  'whsec_958e2ea79e5957d7726f3c8ffba8fbfb466d952a85640c8ecc3b53c085adfe67';
+const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const YOUR_DOMAIN = (process.env.NODE_ENV = 'development'
   ? 'http://localhost:5173'
