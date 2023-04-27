@@ -37,8 +37,6 @@ app.post(
       return;
     }
 
-    console.log(event);
-
     // Handle the event
     switch (event.type) {
       case 'payment_intent.succeeded':
@@ -112,6 +110,10 @@ app.post('/create-checkout-session', async (req, res) => {
       }),
     },
   });
+
+  console.log('REQUEST BODY', req.body);
+  console.log('______________________');
+  console.log('SESSION', session);
 
   res.status(200).json({
     id: session.id,
