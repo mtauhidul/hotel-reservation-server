@@ -1,4 +1,5 @@
 const admin = require('firebase-admin');
+const emailjs = require('@emailjs/nodejs');
 
 let serviceAccount = require('./serviceAccountKey.json');
 
@@ -38,6 +39,37 @@ exports.fulfillOrder = async (session) => {
     .update({
       bookings,
     });
+
+  const templateParams = {
+    name: newBooking.name,
+    email: newBooking.email,
+    room: room.data().name,
+    type: newBooking.type,
+    checkIn: newBooking.checkIn,
+    checkOut: newBooking.checkOut,
+    guest: newBooking.guests,
+    bookingDate: new Date().toLocaleDateString(),
+    bookingId: newBooking.id,
+  };
+
+  const SERVICE_ID = process.env.VITE_PUBLIC_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = process.env.VITE_CONFIRMATION_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = process.env.VITE_PUBLIC_EMAILJS_USER_ID;
+  const PRIVATE_KEY = process.env.VITE_PRIVATE_EMAILJS_USER_ID;
+
+  emailjs
+    .send(SERVICE_ID, TEMPLATE_ID, templateParams, {
+      publicKey: PUBLIC_KEY,
+      privateKey: PRIVATE_KEY,
+    })
+    .then(
+      function (response) {
+        console.log('SUCCESS!', response.status, response.text);
+      },
+      function (err) {
+        console.log('FAILED...', err);
+      }
+    );
 
   return {
     statusCode: 200,
