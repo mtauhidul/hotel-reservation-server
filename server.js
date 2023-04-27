@@ -37,6 +37,8 @@ app.post(
       return;
     }
 
+    console.log(event);
+
     // Handle the event
     switch (event.type) {
       case 'payment_intent.succeeded':
