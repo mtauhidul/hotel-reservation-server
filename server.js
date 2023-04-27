@@ -13,11 +13,11 @@ app.use(express.static('public'));
 app.use(express.static(path.resolve(__dirname, '../client', 'wwwroot', 'app')));
 
 const endpointSecret =
-  'whsec_7e7a8a249df8ed2082a48d3e2e0e220fcce2e4b4fb6b9dc2fc5511d3320d32f2';
+  'whsec_958e2ea79e5957d7726f3c8ffba8fbfb466d952a85640c8ecc3b53c085adfe67';
 
 const YOUR_DOMAIN = (process.env.NODE_ENV = 'development'
   ? 'http://localhost:5173'
-  : 'https://hotel-reservation-client-beta.vercel.app');
+  : process.env.PROD_DOMAIN);
 
 app.get('/', (req, res) => {
   res.send('Hotel Reservation System');
