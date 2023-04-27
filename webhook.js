@@ -9,11 +9,7 @@ const app = !admin.apps.length
   : admin.app();
 
 exports.fulfillOrder = async (session) => {
-  console.log('Fulfilling order', session);
-
   const bookingDetails = JSON.parse(session.metadata.bookingDetails);
-
-  console.log('Booking Details', bookingDetails);
 
   const room = await app
     .firestore()
@@ -29,7 +25,7 @@ exports.fulfillOrder = async (session) => {
     guests: bookingDetails.guests,
     type: bookingDetails.typeEN,
     id: session.id,
-    name: session.shipping.name,
+    name: session.customer_details.name,
     email: session.customer_details.email,
   };
 
