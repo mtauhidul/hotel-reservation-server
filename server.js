@@ -14,9 +14,7 @@ app.use(express.static(path.resolve(__dirname, '../client', 'wwwroot', 'app')));
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
-const YOUR_DOMAIN = (process.env.NODE_ENV = 'development'
-  ? 'http://localhost:5173'
-  : process.env.PROD_DOMAIN);
+const host = process.env.HOST;
 
 app.get('/', (req, res) => {
   res.send('Hotel Reservation System');
@@ -97,8 +95,8 @@ app.post('/create-checkout-session', async (req, res) => {
     payment_method_types: ['card'],
     line_items: [transformedItem],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/thanks`,
-    cancel_url: `${YOUR_DOMAIN}/rooms`,
+    success_url: `${host}/thanks`,
+    cancel_url: `${host}/rooms`,
     metadata: {
       roomId: id,
       images: JSON.stringify(thumbnailEN),
