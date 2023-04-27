@@ -43,7 +43,7 @@ exports.fulfillOrder = async (session) => {
   const templateParams = {
     name: newBooking.name,
     email: newBooking.email,
-    room: room.data().name,
+    room: room.data().titleEN,
     type: newBooking.type,
     checkIn: newBooking.checkIn,
     checkOut: newBooking.checkOut,
