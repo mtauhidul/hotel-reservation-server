@@ -18,7 +18,7 @@ const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 const host = process.env.HOST;
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, './wwwroot/app'));
+  res.sendFile(path.join(__dirname, './wwwroot/app/index.html'));
 });
 
 app.get('/', (req, res) => {
