@@ -10,11 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(express.static(path.resolve(__dirname, './client', 'wwwroot', 'app')));
+app.use(express.static(path.resolve(__dirname, './wwwroot/app')));
+app.use(express.static(path.join(__dirname, './wwwroot/app')));
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const host = process.env.HOST;
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, './wwwroot/app'));
+});
 
 app.get('/', (req, res) => {
   res.send('Hotel Reservation System');
