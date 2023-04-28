@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(express.static(path.resolve(__dirname, '../client', 'wwwroot', 'app')));
+app.use(express.static(path.resolve(__dirname, './client', 'wwwroot', 'app')));
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
