@@ -44,12 +44,12 @@ app.post(
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
-        console.log(paymentIntent);
+        // console.log(paymentIntent);
 
         break;
       case 'checkout.session.completed':
         const session = event.data.object;
-        console.log(session);
+        // console.log(session);
         fulfillOrder(session)
           .then(() => response.status(200))
           .catch((err) =>
@@ -58,7 +58,7 @@ app.post(
         break;
 
       default:
-        console.log(`Unhandled event type ${event.type}`);
+      // console.log(`Unhandled event type ${event.type}`);
     }
 
     response.send();
