@@ -1,11 +1,10 @@
 const admin = require('firebase-admin');
 const emailjs = require('@emailjs/nodejs');
-
-let serviceAccount = require('./serviceAccountKey.json');
+const serviceAccountKey = require('./serviceAccountKey');
 
 const app = !admin.apps.length
   ? admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
+      credential: admin.credential.cert(serviceAccountKey),
     })
   : admin.app();
 
