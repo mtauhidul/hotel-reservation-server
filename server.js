@@ -86,7 +86,7 @@ app.post('/create-checkout-session', async (req, res) => {
 
   const transformedItem = {
     price_data: {
-      currency: 'usd',
+      currency: 'eur',
       unit_amount: Number(+priceEN * 100) * Number(guests),
       product_data: {
         name: titleEN,
