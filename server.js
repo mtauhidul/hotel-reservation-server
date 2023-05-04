@@ -84,10 +84,21 @@ app.post('/create-checkout-session', async (req, res) => {
     descriptionEN,
   } = req.body;
 
+  const calculateDays = (checkIn, checkOut) => {
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    const differenceInTime = checkOutDate.getTime() - checkInDate.getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+    return differenceInDays;
+  };
+
+  const days = calculateDays(checkIn, checkOut);
+
   const transformedItem = {
     price_data: {
       currency: 'eur',
-      unit_amount: Number(+priceEN * 100) * Number(guests),
+      unit_amount: Number(+priceEN * 100) * days,
       product_data: {
         name: titleEN,
         images: [imagesEN[0]],
